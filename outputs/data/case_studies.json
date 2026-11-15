@@ -1,0 +1,206 @@
+[
+  {
+    "region": "Quebec",
+    "case": "Canada 2023 May-August",
+    "year": 2023,
+    "months": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "hfai_period": 29273.555699999997,
+    "baseline_2012_2019_same_month_median_sum": 143.12772,
+    "ratio_to_baseline": 204.52750662135884,
+    "raw_filtered_detections": 582012,
+    "monthly_hfai": [
+      {
+        "month": 5,
+        "hfai": 46.62734,
+        "raw": 839.0,
+        "baseline_same_month_median": 7.62407
+      },
+      {
+        "month": 6,
+        "hfai": 21859.54609,
+        "raw": 431766.0,
+        "baseline_same_month_median": 81.71754999999999
+      },
+      {
+        "month": 7,
+        "hfai": 6518.10573,
+        "raw": 132328.0,
+        "baseline_same_month_median": 48.290175000000005
+      },
+      {
+        "month": 8,
+        "hfai": 849.27654,
+        "raw": 17079.0,
+        "baseline_same_month_median": 5.495925
+      }
+    ],
+    "monthly_source_counts": [
+      {
+        "month": 5,
+        "MODIS_count": 59.0,
+        "SNPP_VIIRS_count": 307.0,
+        "NOAA20_VIIRS_count": 254.0,
+        "NOAA21_VIIRS_count": 219.0
+      },
+      {
+        "month": 6,
+        "MODIS_count": 20205.0,
+        "SNPP_VIIRS_count": 139542.0,
+        "NOAA20_VIIRS_count": 135303.0,
+        "NOAA21_VIIRS_count": 136716.0
+      },
+      {
+        "month": 7,
+        "MODIS_count": 5336.0,
+        "SNPP_VIIRS_count": 43545.0,
+        "NOAA20_VIIRS_count": 42205.0,
+        "NOAA21_VIIRS_count": 41242.0
+      },
+      {
+        "month": 8,
+        "MODIS_count": 728.0,
+        "SNPP_VIIRS_count": 5659.0,
+        "NOAA20_VIIRS_count": 5476.0,
+        "NOAA21_VIIRS_count": 5216.0
+      }
+    ],
+    "measure": "count_aligned_hfai"
+  },
+  {
+    "region": "Valparaiso",
+    "case": "Valparaiso Feb 2024",
+    "year": 2024,
+    "months": [
+      2
+    ],
+    "hfai_period": 137.63408,
+    "baseline_2012_2019_same_month_median_sum": 30.750705,
+    "ratio_to_baseline": 4.475802424692377,
+    "raw_filtered_detections": 1869,
+    "monthly_hfai": [
+      {
+        "month": 2,
+        "hfai": 137.63408,
+        "raw": 1869.0,
+        "baseline_same_month_median": 30.750705
+      }
+    ],
+    "monthly_source_counts": [
+      {
+        "month": 2,
+        "MODIS_count": 108.0,
+        "SNPP_VIIRS_count": 538.0,
+        "NOAA20_VIIRS_count": 611.0,
+        "NOAA21_VIIRS_count": 612.0
+      }
+    ],
+    "measure": "count_aligned_hfai"
+  },
+  {
+    "region": "Pantanal",
+    "case": "Pantanal Sep-Nov 2024",
+    "year": 2024,
+    "months": [
+      9,
+      10,
+      11
+    ],
+    "hfai_period": 50116.19918999999,
+    "baseline_2012_2019_same_month_median_sum": 12393.532280000001,
+    "ratio_to_baseline": 4.043738141617201,
+    "raw_filtered_detections": 606677,
+    "monthly_hfai": [
+      {
+        "month": 9,
+        "hfai": 37405.67563,
+        "raw": 453898.0,
+        "baseline_same_month_median": 6877.328895000001
+      },
+      {
+        "month": 10,
+        "hfai": 11529.662260000001,
+        "raw": 138834.0,
+        "baseline_same_month_median": 3894.085755
+      },
+      {
+        "month": 11,
+        "hfai": 1180.8613,
+        "raw": 13945.0,
+        "baseline_same_month_median": 1622.11763
+      }
+    ],
+    "monthly_source_counts": [
+      {
+        "month": 9,
+        "MODIS_count": 30145.0,
+        "SNPP_VIIRS_count": 142181.0,
+        "NOAA20_VIIRS_count": 140429.0,
+        "NOAA21_VIIRS_count": 141143.0
+      },
+      {
+        "month": 10,
+        "MODIS_count": 9680.0,
+        "SNPP_VIIRS_count": 46118.0,
+        "NOAA20_VIIRS_count": 42104.0,
+        "NOAA21_VIIRS_count": 40932.0
+      },
+      {
+        "month": 11,
+        "MODIS_count": 1107.0,
+        "SNPP_VIIRS_count": 4099.0,
+        "NOAA20_VIIRS_count": 4415.0,
+        "NOAA21_VIIRS_count": 4324.0
+      }
+    ],
+    "measure": "count_aligned_hfai"
+  },
+  {
+    "region": "Punjab",
+    "case": "Punjab Oct-Nov 2024",
+    "year": 2024,
+    "months": [
+      10,
+      11
+    ],
+    "hfai_period": 3962.29086,
+    "baseline_2012_2019_same_month_median_sum": 16182.77331,
+    "ratio_to_baseline": 0.24484621913053295,
+    "raw_filtered_detections": 55030,
+    "monthly_hfai": [
+      {
+        "month": 10,
+        "hfai": 1359.5157100000001,
+        "raw": 21285.0,
+        "baseline_same_month_median": 6831.482835000001
+      },
+      {
+        "month": 11,
+        "hfai": 2602.77515,
+        "raw": 33745.0,
+        "baseline_same_month_median": 9351.290475
+      }
+    ],
+    "monthly_source_counts": [
+      {
+        "month": 10,
+        "MODIS_count": 1149.0,
+        "SNPP_VIIRS_count": 6672.0,
+        "NOAA20_VIIRS_count": 6955.0,
+        "NOAA21_VIIRS_count": 6509.0
+      },
+      {
+        "month": 11,
+        "MODIS_count": 4096.0,
+        "SNPP_VIIRS_count": 8843.0,
+        "NOAA20_VIIRS_count": 10838.0,
+        "NOAA21_VIIRS_count": 9968.0
+      }
+    ],
+    "measure": "count_aligned_hfai"
+  }
+]

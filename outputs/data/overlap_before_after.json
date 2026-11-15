@@ -1,0 +1,315 @@
+{
+  "project": "Pyrochron",
+  "test": "Raw VIIRS detections versus the independently selected count_ratio estimate on identical final held-out cell-months, with MODIS counts as reference.",
+  "holdout_years": [
+    2020,
+    2024
+  ],
+  "method_selection_years": [
+    2018,
+    2019
+  ],
+  "method_selection_independent_of_holdout": true,
+  "inclusion_rule": "At least one MODIS, raw VIIRS, cluster-collapsed VIIRS, or FRP detection; actual archive sensor-region pair and post-mission-start months only.",
+  "comparison_unit": "MODIS detections per 0.25-degree cell-month",
+  "same_rows_before_after": true,
+  "selected_method": "count_ratio",
+  "selected_method_label": "Count-ratio scaling",
+  "pooled_before_raw_viirs": {
+    "n": 61441,
+    "mae": 50.832782669552905,
+    "rmse": 212.6582566900278,
+    "bias": 50.45961165996647,
+    "bias_pct": 343.1303408516144,
+    "r2": -14.378045860911318
+  },
+  "pooled_after_selected_method": {
+    "n": 61441,
+    "mae": 5.3345738300027445,
+    "rmse": 22.054821405453843,
+    "bias": 1.5105413714883873,
+    "bias_pct": 10.271830452482316,
+    "r2": 0.834596862363923
+  },
+  "macro_before_pair_mean": {
+    "mae": 57.05943018135545,
+    "rmse": 180.99530331011167,
+    "bias": 56.75403893753261,
+    "r2": -17.860359565464226
+  },
+  "macro_after_pair_mean": {
+    "mae": 4.867789973111062,
+    "rmse": 15.20911980098599,
+    "bias": 1.2845651469843584,
+    "r2": 0.8415623590242564
+  },
+  "mae_reduction_fraction": 0.8950564271745451,
+  "rmse_reduction_fraction": 0.8962898419805956,
+  "pairs": [
+    {
+      "region": "Pantanal",
+      "sensor": "SNPP_VIIRS",
+      "sensor_label": "S-NPP",
+      "factor": 0.28982494013282845,
+      "raw_before": {
+        "n": 16743,
+        "mae": 45.9215194409604,
+        "rmse": 214.09321994573662,
+        "bias": 45.40237711282327,
+        "bias_pct": 306.60874685897977,
+        "r2": -12.829076120251171
+      },
+      "selected_method_after": {
+        "n": 16743,
+        "mae": 5.924835160756987,
+        "rmse": 26.352955479547102,
+        "bias": 2.642525949521859,
+        "bias_pct": 17.84535571588821,
+        "r2": 0.7904701047505516
+      }
+    },
+    {
+      "region": "Pantanal",
+      "sensor": "NOAA20_VIIRS",
+      "sensor_label": "NOAA-20",
+      "factor": 0.27111075351007763,
+      "raw_before": {
+        "n": 16802,
+        "mae": 45.37370551124866,
+        "rmse": 212.4700099271384,
+        "bias": 44.930663016307584,
+        "bias_pct": 304.49241516724544,
+        "r2": -12.664993826192523
+      },
+      "selected_method_after": {
+        "n": 16802,
+        "mae": 5.186133099373889,
+        "rmse": 21.9353142925289,
+        "bias": 1.4257531008567663,
+        "bias_pct": 9.662243465103067,
+        "r2": 0.8543528850640052
+      }
+    },
+    {
+      "region": "Pantanal",
+      "sensor": "NOAA21_VIIRS",
+      "sensor_label": "NOAA-21",
+      "factor": 0.28480541425947786,
+      "raw_before": {
+        "n": 5810,
+        "mae": 65.83235800344234,
+        "rmse": 299.6934595672736,
+        "bias": 65.41790017211704,
+        "bias_pct": 317.8388051713469,
+        "r2": -13.706918082927176
+      },
+      "selected_method_after": {
+        "n": 5810,
+        "mae": 7.720005112299785,
+        "rmse": 34.637000387918754,
+        "bias": 3.9111657984321355,
+        "bias_pct": 19.002754000510702,
+        "r2": 0.8035519636198879
+      }
+    },
+    {
+      "region": "Quebec",
+      "sensor": "SNPP_VIIRS",
+      "sensor_label": "S-NPP",
+      "factor": 0.17083731374762726,
+      "raw_before": {
+        "n": 1493,
+        "mae": 113.77963831212324,
+        "rmse": 330.4088143418326,
+        "bias": 113.18352310783656,
+        "bias_pct": 594.9896130417943,
+        "r2": -36.38422644141695
+      },
+      "selected_method_after": {
+        "n": 1493,
+        "mae": 7.7278810945751575,
+        "rmse": 21.835264069797592,
+        "bias": 3.5629955370138364,
+        "bias_pct": 18.73015857456307,
+        "r2": 0.8367316338806573
+      }
+    },
+    {
+      "region": "Quebec",
+      "sensor": "NOAA20_VIIRS",
+      "sensor_label": "NOAA-20",
+      "factor": 0.14895577395577395,
+      "raw_before": {
+        "n": 1556,
+        "mae": 105.33547557840618,
+        "rmse": 315.6990529457577,
+        "bias": 104.98843187660668,
+        "bias_pct": 575.1980564064645,
+        "r2": -34.39223480540431
+      },
+      "selected_method_after": {
+        "n": 1556,
+        "mae": 6.230442473614067,
+        "rmse": 17.170015841065773,
+        "bias": 0.10488822691586054,
+        "bias_pct": 0.5746490654592409,
+        "r2": 0.8953105736408996
+      }
+    },
+    {
+      "region": "Quebec",
+      "sensor": "NOAA21_VIIRS",
+      "sensor_label": "NOAA-21",
+      "factor": 0.16998771747814784,
+      "raw_before": {
+        "n": 984,
+        "mae": 164.4349593495935,
+        "rmse": 392.47756136989767,
+        "bias": 164.15650406504065,
+        "bias_pct": 585.6992639327024,
+        "r2": -36.27329312424966
+      },
+      "selected_method_after": {
+        "n": 984,
+        "mae": 10.03556286457223,
+        "rmse": 23.566401767325527,
+        "bias": 4.641470797332378,
+        "bias_pct": 16.560452752366146,
+        "r2": 0.8656138058876404
+      }
+    },
+    {
+      "region": "Valparaiso",
+      "sensor": "SNPP_VIIRS",
+      "sensor_label": "S-NPP",
+      "factor": 0.24801080918780963,
+      "raw_before": {
+        "n": 1066,
+        "mae": 5.9033771106941835,
+        "rmse": 21.379159953098895,
+        "bias": 5.715759849906191,
+        "bias_pct": 395.39260220635947,
+        "r2": -9.490502494438731
+      },
+      "selected_method_after": {
+        "n": 1066,
+        "mae": 1.0947746015632986,
+        "rmse": 2.3693655033926726,
+        "bias": 0.3305014233956273,
+        "bias_pct": 22.86272013885391,
+        "r2": 0.8711515672369345
+      }
+    },
+    {
+      "region": "Valparaiso",
+      "sensor": "NOAA20_VIIRS",
+      "sensor_label": "NOAA-20",
+      "factor": 0.2561538461538462,
+      "raw_before": {
+        "n": 1094,
+        "mae": 5.26873857404022,
+        "rmse": 18.063619037279015,
+        "bias": 5.0676416819012795,
+        "bias_pct": 359.7663854639845,
+        "r2": -6.676298706002235
+      },
+      "selected_method_after": {
+        "n": 1094,
+        "mae": 1.1493917873716777,
+        "rmse": 2.4743327621242033,
+        "bias": 0.2503199268738575,
+        "bias_pct": 17.770927968851407,
+        "r2": 0.8559681475439491
+      }
+    },
+    {
+      "region": "Valparaiso",
+      "sensor": "NOAA21_VIIRS",
+      "sensor_label": "NOAA-21",
+      "factor": 0.2493405351086547,
+      "raw_before": {
+        "n": 388,
+        "mae": 6.533505154639175,
+        "rmse": 21.017236421664094,
+        "bias": 6.265463917525773,
+        "bias_pct": 431.02836879432624,
+        "r2": -20.07026364551199
+      },
+      "selected_method_after": {
+        "n": 388,
+        "mae": 1.3050661277853246,
+        "rmse": 2.7961593477893363,
+        "bias": 0.4710693367278887,
+        "bias_pct": 32.40689763305334,
+        "r2": 0.6270568923378135
+      }
+    },
+    {
+      "region": "Punjab",
+      "sensor": "SNPP_VIIRS",
+      "sensor_label": "S-NPP",
+      "factor": 0.21317245733715276,
+      "raw_before": {
+        "n": 6468,
+        "mae": 47.39363017934446,
+        "rmse": 137.54052756306154,
+        "bias": 47.23716759431045,
+        "bias_pct": 345.79820044140115,
+        "r2": -11.968334288496061
+      },
+      "selected_method_after": {
+        "n": 6468,
+        "mae": 4.125007621261462,
+        "rmse": 9.907297915354787,
+        "bias": -0.6786590355218902,
+        "bias_pct": -4.968102135425936,
+        "r2": 0.9327126739083189
+      }
+    },
+    {
+      "region": "Punjab",
+      "sensor": "NOAA20_VIIRS",
+      "sensor_label": "NOAA-20",
+      "factor": 0.21275906380081056,
+      "raw_before": {
+        "n": 6542,
+        "mae": 48.391164781412414,
+        "rmse": 138.41131563544204,
+        "bias": 48.26459798226842,
+        "bias_pct": 357.36177918623736,
+        "r2": -12.264124228663512
+      },
+      "selected_method_after": {
+        "n": 6542,
+        "mae": 3.979825056422513,
+        "rmse": 9.467304748489074,
+        "bias": -0.36359474166384176,
+        "bias_pct": -2.692136042063101,
+        "r2": 0.9379433822888535
+      }
+    },
+    {
+      "region": "Punjab",
+      "sensor": "NOAA21_VIIRS",
+      "sensor_label": "NOAA-21",
+      "factor": 0.21309529544776631,
+      "raw_before": {
+        "n": 2495,
+        "mae": 30.54509018036072,
+        "rmse": 70.68966301315793,
+        "bias": 30.418436873747495,
+        "bias_pct": 324.97216750877794,
+        "r2": -7.60404902201636
+      },
+      "selected_method_after": {
+        "n": 2495,
+        "mae": 3.9345546777363554,
+        "rmse": 9.998025496498146,
+        "bias": -0.8836545560721799,
+        "bias_pct": -9.44043040763933,
+        "r2": 0.8278846781315653
+      }
+    }
+  ],
+  "interpretation": "This is held-out count agreement on a shared cell-month grid, not evidence that both satellites had equal view opportunity or detected identical fires. Cloud, missed detections and a fire-free observation denominator are unavailable."
+}

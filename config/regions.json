@@ -1,0 +1,26 @@
+{
+  "Pantanal": {
+    "label": "Pantanal, Brazil",
+    "bbox": [-60.0, -22.0, -55.0, -15.0],
+    "center": [-57.5, -18.5],
+    "request_ids": ["843906", "843907", "843908", "843909"]
+  },
+  "Quebec": {
+    "label": "Boreal Quebec, Canada",
+    "bbox": [-78.0, 46.0, -64.0, 55.0],
+    "center": [-71.0, 50.5],
+    "request_ids": ["843910", "843911", "843912", "843913"]
+  },
+  "Valparaiso": {
+    "label": "Valparaíso region, Chile",
+    "bbox": [-73.0, -34.0, -70.0, -32.0],
+    "center": [-71.5, -33.0],
+    "request_ids": ["843914", "843915", "843916", "843917"]
+  },
+  "Punjab": {
+    "label": "Punjab, India",
+    "bbox": [73.5, 29.5, 76.9, 32.6],
+    "center": [75.2, 31.05],
+    "request_ids": ["843938", "843939", "843940", "843941"]
+  }
+}

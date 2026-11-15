@@ -1,0 +1,136 @@
+﻿PYROCHRON â€” BIBLIOGRAPHY, DATA PROVENANCE, AND LOCAL INPUT INDEX
+Prepared 13 November 2026. Local FIRMS snapshots/archive inventory was last profiled 12 November 2026.
+
+PURPOSE AND SCOPE
+Pyrochron is a runnable local Streamlit web app (app.py / launch.ps1) with a local JSON/CSV API (api.py). It produces a historical monthly NASA FIRMS active-fire detection calendar and Harmonized Fire Activity Index (HFAI) across four study rectangles, plus an optional approximate daily 1 km VIIRS cluster view for inspecting repeat detections. Its defined purpose is retrospective comparison of seasonal detection activity and transparent MODIS/VIIRS aggregate-count alignment. Neither view is an estimate of burned area, unique-fire incidents, or individual fire causes. See outputs/reports/measurement-scope.md for the question, data contract, and validation evidence; outputs/reports/data-integrity-audit.md for raw-file checks.
+
+1. CORE NASA FIRMS ACTIVE-FIRE DATA
+
+NASA FIRMS archive download portal (historical standard/science archive; Earthdata login and approved request may be required):
+https://firms.modaps.eosdis.nasa.gov/download/
+
+NASA FIRMS active-fire products and rolling global feeds:
+https://firms.modaps.eosdis.nasa.gov/active_fire/
+
+NASA FIRMS attribute/field definitions for MODIS and VIIRS:
+https://www.earthdata.nasa.gov/data/tools/firms/active-fire-data-attributes-modis-viirs
+
+Historical request-ID to product mapping. Local standard files use archives/fire_archive_<product-code>_<request-id>.csv. Local rolling NRT companions, when supplied, use archives/fire_nrt_<product-code>_<request-id>.csv. Product code mapping: MODIS C6.1 = M-C61; NOAA-20 VIIRS C2 = J1V-C2; NOAA-21 VIIRS C2 = J2V-C2; Suomi-NPP VIIRS C2 = SV-C2.
+
+Area                 MODIS M-C61       NOAA-20 J1V-C2    NOAA-21 J2V-C2    S-NPP SV-C2
+Pantanal, Brazil     843906 present    843907 present    843908 present    843909 present
+Quebec, Canada       843910 present    843911 present    843912 present    843913 present
+Valparaiso, Chile    843914 present    843915 present    843916 present    843917 present
+Punjab, India        843938 present    843939 present    843940 present    843941 present
+
+All 16 expected historical CSV files and their 16 NRT companions are present in the local build workspace, including the NOAA-21/Pantanal request. The large raw FIRMS source files are excluded from version control; request IDs, bounds, source cutoffs, and row-balance results are summarized in outputs/reports/data-integrity-audit.md.
+
+2. NASA FIRMS GLOBAL 7-DAY FEEDS â€” ROLLING SNAPSHOTS, NOT HISTORICAL VALIDATION
+
+These local snapshots were saved 12 November 2026 for ingestion/QA checks. The URLs below always point to rolling current-week files; do not treat their current contents as the frozen local snapshot or as the historical overlap/holdout dataset.
+
+MODIS C6.1 live feed: MODIS_C6_1_Global_7d.csv
+https://firms.modaps.eosdis.nasa.gov/data/active_fire/modis-c6.1/csv/MODIS_C6_1_Global_7d.csv
+Frozen local copy: inputs/firms/MODIS_C6_1_Global_7d_20261112.csv (86,993 detections)
+Duplicate path: inputs/firms/MODIS_Global_7d.csv. It is byte-identical to the dated MODIS snapshot (same byte size and SHA-256).
+
+NOAA-20 VIIRS C2 live feed: J1_VIIRS_C2_Global_7d.csv
+https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_Global_7d.csv
+Frozen local copy: inputs/firms/VIIRS_NOAA20_C2_Global_7d_20261112.csv (453,100 detections)
+
+NOAA-21 VIIRS C2 live feed: J2_VIIRS_C2_Global_7d.csv
+https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-21-viirs-c2/csv/J2_VIIRS_C2_Global_7d.csv
+Frozen local copy: inputs/firms/VIIRS_NOAA21_C2_Global_7d_20261112.csv (440,199 detections)
+
+Combined dated snapshot: 980,292 rows across the three products; these current-week rows were not used for historical model selection or the 2020â€“2024 holdout score.
+
+3. NASA POWER MONTHLY WEATHER CONTEXT
+
+Monthly and Annual API documentation:
+https://power.larc.nasa.gov/docs/services/api/temporal/monthly/
+Meteorological methodology (MERRA-2 context):
+https://power.larc.nasa.gov/docs/methodology/meteorology/
+NASA POWER homepage:
+https://power.larc.nasa.gov/
+Point API endpoint:
+https://power.larc.nasa.gov/api/temporal/monthly/point
+
+Parameters: T2M temperature (degrees Celsius) and PRECTOTCORR precipitation (mm/day); community AG; monthly values are converted to monthly precipitation totals using days per month. NASA POWER monthly point values are gridded MERRA-2 context at area centroids, not measurements at individual fire pixels and not inputs to the HFAI calibration. The four preserved JSON responses contain 312 monthly-API keys per parameter: 288 calendar months from 2001-01 through 2024-12 plus 24 annual aggregate month-13 values. Ingestion uses only the 288 calendar-month entries and excludes month 13.
+
+Pantanal centroid (-18.5, -57.5): inputs/climate/nasa_power_monthly_pantanal_2001_2024.json
+Quebec centroid (50.5, -71.0): inputs/climate/nasa_power_monthly_quebec_2001_2024.json
+Valparaiso centroid (-33.0, -71.5): inputs/climate/nasa_power_monthly_valparaiso_2001_2024.json
+Punjab centroid (31.05, 75.2): inputs/climate/nasa_power_monthly_punjab_2001_2024.json
+
+4. NASA FIRMS TECHNICAL AND OPERATIONAL DOCUMENTATION
+
+FIRMS FAQ and active-fire detection/coverage limitations:
+https://www.earthdata.nasa.gov/data/tools/firms/faq
+FIRMS area API documentation and limits:
+https://firms.modaps.eosdis.nasa.gov/api/area/
+FIRMS API index:
+https://firms.modaps.eosdis.nasa.gov/api/
+NASA VIIRS I-Band 375 m active-fire product:
+https://www.earthdata.nasa.gov/data/instruments/viirs/viirs-i-band-375-m-active-fire-data
+Suomi-NPP product delivery transition notice:
+https://www.earthdata.nasa.gov/data/alerts-outages/suomi-npp-data-product-delivery-cease-november-1-2026
+
+5. RELATED DATA CATALOGS AND PUBLISHED CONTEXT (NOT INPUTS TO THIS INDEX)
+
+The following sources describe separate research questions; the current project's monthly detection-activity index is reproducible from the preserved FIRMS and POWER inputs above. No downloads from these catalogs are required to build or assess that index.
+
+Cloud and observation-opportunity products (for a future study of detections conditional on valid, clear satellite viewing):
+MODIS Terra/Aqua MOD35_L2 / MYD35_L2 cloud mask product description (cloud confidence and shadow flags; swath Level 2): https://modis.gsfc.nasa.gov/data/dataprod/mod35.php
+NASA LAADS transition catalogue for corresponding MODIS/VIIRS cloud-mask products: https://ladsweb.modaps.eosdis.nasa.gov/learn/modis-to-viirs-transition
+Candidate daily VIIRS fire-mask context: VNP14A1 (S-NPP), VJ114A1 (NOAA-20), VJ214A1 (NOAA-21). Product file specification: https://ladsweb.modaps.eosdis.nasa.gov/filespec/VIIRS/1/VNP14A1
+NASA Earthdata Login data-access guide (LAADS archive downloads use a locally configured Earthdata token): https://urs.earthdata.nasa.gov/documentation/for_users/data_access
+NASA active-fire point rows alone do not provide a view-time denominator. A future cloud-conditioned study would need platform-matched geolocation, valid swath/orbit coverage, acquisition time, and quality flags; cloud fraction alone is not an observation denominator. That is a distinct estimand from the current index.
+Metadata-only LAADS granule searches were exploratory research only; no cloud-mask granules are inputs to this release. Product versions and specifications should be rechecked against the linked LAADS catalog before any future cloud-conditioned analysis.
+
+NASA POWER also distributes daily cloud amount from the CERES SYN1deg product. This is gridded meteorological/radiative context derived from combined CERES, MODIS cloud retrievals, and geostationary-imager sampling; it is not a sensor-specific cloud mask at a FIRMS overpass. Documentation: https://power.larc.nasa.gov/docs/methodology/data/sources_clds_aerosols/. The unreferenced `inputs/climate/nasa_power_cloud_daily_2024.json` is not used by the current pipeline or interpreted as overpass cloud.
+
+Land-cover and independent event-label sources (for future work on setting or cause):
+NASA MODIS MCD12Q1 yearly global 500 m land-cover product and quality fields: https://ladsweb.modaps.eosdis.nasa.gov/missions-and-measurements/products/MCD12Q1/
+Land cover describes surface context and does not establish ignition cause. Cause attribution would additionally require independent event labels and validation; the current index makes no per-hotspot cause assignment.
+
+Google Earth Engine Community Catalog, FIRMS historical vector collections. Reference for archive coverage/schema only; not an input to this project:
+https://gee-community-catalog.org/projects/firms_vector/
+
+Vadrevu et al., Punjab MODIS/VIIRS active-fire and emissions comparison, published context only; not a Pyrochron result or ingested dataset:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC6108185/
+
+Giglio et al. (2006), Global estimation of burned area using MODIS active fire observations. This is a separate calibrated burned-area methodology and is not applied to Pyrochron HFAI:
+https://acp.copernicus.org/articles/6/957/2006/
+
+Wooster et al. (2005), FRP derivation and calibration relationships between biomass consumption and fire radiative power. Experimental calibration context; not a conversion applied to this project:
+https://doi.org/10.1029/2005JD006318
+
+No non-NASA dataset is ingested in the analysis. The catalog and papers above are references only.
+
+6. ADDITIONAL RESOURCE ARCHIVE REVIEWED
+
+Data acquisition decision and local reproduction steps: outputs/reports/data-acquisition-step-by-step.md. No additional remote data download is required for the current defined release.
+
+All 19 locally supplied PDFs were reviewed one by one. Their disposition and relevance are summarized in outputs/reports/additional-resources-review.md; the originals remain under archives/additional-resources/.
+
+01 archives/additional-resources/acp-6-957-2006.pdf â€” Global estimation of burned area using MODIS active fire observations.
+02 archives/additional-resources/Active Fire Data Attributes for MODIS and VIIRS _ NASA Earthdata.pdf â€” NASA FIRMS field definitions.
+03 archives/additional-resources/Convert LANCE NRT AMSR2 Data to GeoTIFF Format Using Python _ NASA Earthdata.pdf â€” general AMSR2 format recipe.
+04 archives/additional-resources/Convert LANCE NRT AMSR2 Ocean Data to GeoTIFF Format Using Python _ NASA Earthdata.pdf â€” ocean precipitable-water recipe.
+05 archives/additional-resources/Convert LANCE NRT AMSR2 Rain Data to GeoTIFF Format Using Python _ NASA Earthdata.pdf â€” Rain-product total-column-water-vapor recipe (not rainfall amount).
+06 archives/additional-resources/Convert LANCE NRT AMSR2 Snow Data to GeoTIFF Format Using Python _ NASA Earthdata.pdf â€” snow-water-equivalent recipe.
+07 archives/additional-resources/eint-ei141.1.pdf â€” validation of MODIS active-fire algorithms.
+08 archives/additional-resources/modguide.dvi.pdf â€” MODIS Collection 5 fire product user guide (historical/superseded).
+09 archives/additional-resources/MODIS Active Fire Product User's Guide.pdf â€” MODIS Collection 6 fire product user guide.
+10 archives/additional-resources/MODIS_C61_Land_Proposed_Changes.docx.pdf â€” proposed C6.1 land-product changes; not a fire-algorithm change note.
+11 archives/additional-resources/NASA_SOP_2012_Orbiting_watchtowers.pdf â€” NASA FIRMS operational-use feature.
+12 archives/additional-resources/Potential global fire monitoring from EOSâ€MODIS.pdf â€” legacy MODIS fire-monitoring paper.
+13 archives/additional-resources/Retrieval of biomass combustion rates and totals from fire radiative power observations_ FRP derivation and calibration relationships between biomass consumption and fire radiativ.pdf â€” experimental FRP/combustion calibration paper.
+14 archives/additional-resources/The collection 6 MODIS active fire detection algorithm and fire products.pdf â€” MODIS Collection 6 algorithm paper.
+15 archives/additional-resources/The New VIIRS 375m active fire detection data product_ Algorithm description and initial assessment.pdf â€” VIIRS product algorithm/assessment paper.
+16 archives/additional-resources/Use ArcGIS to Convert LIS Very High Resolution Gridded Lightning Climatology NetCDF Data to GeoTIFF Format _ NASA Earthdata.pdf â€” historic TRMM LIS lightning climatology format recipe.
+17 archives/additional-resources/Users_guide_VIIRS_activefire_algorithms_v1_4.pdf â€” VIIRS active-fire algorithm guide.
+18 archives/additional-resources/VIIRS I-Band 375 m Active Fire Data _ NASA Earthdata.pdf â€” NASA VIIRS product overview and attributes.
+19 archives/additional-resources/Wildfires Can't Hide from Earth Observing Satellites _ NASA Earthdata.pdf â€” NASA public-facing FIRMS feature.
+
+Two image/scanned research PDFs (items 12 and 13) had no extractable text; they were identified and checked against their publication records. Treat detailed interpretation of those two as bibliographic-level, not a full machine-extracted text review.

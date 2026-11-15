@@ -1,0 +1,108 @@
+{
+  "project": "Pyrochron",
+  "region": "Quebec",
+  "bbox": [
+    -78.0,
+    46.0,
+    -64.0,
+    55.0
+  ],
+  "from": "2023-05-01",
+  "to": "2023-08-31",
+  "quality_rules": {
+    "archive_type": "FIRMS type 0 when the type field exists",
+    "MODIS_confidence": "numeric confidence >= 30",
+    "VIIRS_confidence": "categorical confidence n or h",
+    "NRT_without_type": "type filter is unavailable; such rows are retained only strictly after the matching standard archive cutoff and marked provisional"
+  },
+  "matched_rows": 582012,
+  "exported_rows": 300000,
+  "row_cap": 300000,
+  "truncated": true,
+  "is_sample": true,
+  "sampling_method": "Two-pass Hamilton largest-remainder quotas by sensor, then month; lowest deterministic pandas row hash within each sensor-month stratum; final output ordered by sensor, month, and row hash.",
+  "per_sensor": {
+    "MODIS": {
+      "matched": 26328,
+      "exported": 13570
+    },
+    "SNPP_VIIRS": {
+      "matched": 189053,
+      "exported": 97450
+    },
+    "NOAA20_VIIRS": {
+      "matched": 183238,
+      "exported": 94450
+    },
+    "NOAA21_VIIRS": {
+      "matched": 183393,
+      "exported": 94530
+    }
+  },
+  "per_sensor_month": {
+    "MODIS:2023-05": {
+      "matched": 59,
+      "exported": 31
+    },
+    "MODIS:2023-06": {
+      "matched": 20205,
+      "exported": 10414
+    },
+    "MODIS:2023-07": {
+      "matched": 5336,
+      "exported": 2750
+    },
+    "MODIS:2023-08": {
+      "matched": 728,
+      "exported": 375
+    },
+    "NOAA20_VIIRS:2023-05": {
+      "matched": 254,
+      "exported": 133
+    },
+    "NOAA20_VIIRS:2023-06": {
+      "matched": 135303,
+      "exported": 69741
+    },
+    "NOAA20_VIIRS:2023-07": {
+      "matched": 42205,
+      "exported": 21754
+    },
+    "NOAA20_VIIRS:2023-08": {
+      "matched": 5476,
+      "exported": 2822
+    },
+    "NOAA21_VIIRS:2023-05": {
+      "matched": 219,
+      "exported": 114
+    },
+    "NOAA21_VIIRS:2023-06": {
+      "matched": 136716,
+      "exported": 70470
+    },
+    "NOAA21_VIIRS:2023-07": {
+      "matched": 41242,
+      "exported": 21258
+    },
+    "NOAA21_VIIRS:2023-08": {
+      "matched": 5216,
+      "exported": 2688
+    },
+    "SNPP_VIIRS:2023-05": {
+      "matched": 307,
+      "exported": 158
+    },
+    "SNPP_VIIRS:2023-06": {
+      "matched": 139542,
+      "exported": 71928
+    },
+    "SNPP_VIIRS:2023-07": {
+      "matched": 43545,
+      "exported": 22447
+    },
+    "SNPP_VIIRS:2023-08": {
+      "matched": 5659,
+      "exported": 2917
+    }
+  }
+}
