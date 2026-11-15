@@ -67,10 +67,6 @@ The precomputed dashboard is deployable without the source archives. Rebuilding 
 
 Data include NASA FIRMS MODIS and VIIRS active-fire products, plus NASA POWER monthly climate context. The exact source products, endpoints, request IDs, acquisition notes, and additional references are recorded in [`bibliography.txt`](bibliography.txt) and [`outputs/reports/source-log.md`](outputs/reports/source-log.md). Source data remain subject to their respective source terms; the project license applies to original project code and documentation.
 
-## Submission checklist
-
-The project files support the submission, but the team must complete the official website form: provide the project summary and challenge selection, a **public working demonstration link**, NASA/partner data used and references, and the required team and originality details. Make sure every team member is registered and listed on the team page. Publish a public source repository and demo before submitting; check that both open without sign-in. The event page lists the deadline as **November 15, 2026, 11:59 p.m. local time**. See the [official 2026 event page](https://www.spaceappschallenge.org/2026/) and the [challenge statement](https://www.spaceappschallenge.org/2026/challenges/harmonization-of-modis-and-viirs-hot-spots/).
-
 ## License
 
 Original Pyrochron code and documentation are released under Apache License 2.0; see [`LICENSE`](LICENSE). NASA data and third-party materials retain their own terms and attribution. All sources used in the project are cited in `bibliography.txt`.
