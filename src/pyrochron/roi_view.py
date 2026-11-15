@@ -13,6 +13,8 @@ import pandas as pd
 import streamlit as st
 from folium.plugins import Draw, HeatMap
 from streamlit_folium import st_folium
+from pyrochron.analytics import load_report
+from pyrochron.realtime import query_roi
 
 
 def _load_local_env():
@@ -25,6 +27,28 @@ def _load_local_env():
         os.environ.setdefault(name.strip(),value.strip().strip('"').strip("'"))
 
 _load_local_env()
+
+
+def _setting(name):
+    """Read a setting from the process, local .env, or Streamlit Secrets."""
+    value=os.environ.get(name,'').strip()
+    if value:
+        return value
+    try:
+        return str(st.secrets.get(name,'')).strip()
+    except Exception:
+        return ''
+
+
+def _query_hosted_fallback(bbox):
+    """Query FIRMS directly for Streamlit Cloud, where api.py is not running."""
+    key=_setting('FIRMS_MAP_KEY')
+    if not key:
+        raise RuntimeError(
+            'The hosted app has no FIRMS_MAP_KEY configured. Add FIRMS_MAP_KEY '
+            'under Streamlit app Settings → Secrets, then reload the app.'
+        )
+    return query_roi(key,bbox,load_report())
 
 
 def _carto_map(center, zoom):
@@ -116,7 +140,8 @@ def render_live_roi():
         if west>=east or south>=north:
             st.error('Enter an ordered bbox: west < east and south < north.')
         else:
-            api_base=os.environ.get('PYROCHRON_API_URL','http://127.0.0.1:8765').rstrip('/')
+            api_base=_setting('PYROCHRON_API_URL') or 'http://127.0.0.1:8765'
+            api_base=api_base.rstrip('/')
             bbox=','.join(f'{x:.6f}' for x in values)
             try:
                 with st.spinner('Requesting four NRT sources and applying quality filters and daily cluster collapse…'):
@@ -129,7 +154,16 @@ def render_live_roi():
                 except Exception: message=f'API returned HTTP {exc.code}'
                 st.session_state['live_roi_error']=message
             except (URLError,TimeoutError,OSError) as exc:
-                st.session_state['live_roi_error']=f'Cannot reach Pyrochron API ({type(exc).__name__}). Start api.py or use docker compose up.'
+                try:
+                    with st.spinner('Connecting directly to NASA FIRMS from the hosted app…'):
+                        payload=_query_hosted_fallback(values)
+                    st.session_state['live_roi_result']=payload
+                    st.session_state['live_roi_error']=None
+                except (RuntimeError,ValueError) as fallback_exc:
+                    st.session_state['live_roi_error']=(
+                        f'Cannot reach Pyrochron API at {api_base} ({type(exc).__name__}). '
+                        f'{fallback_exc}'
+                    )
     if st.session_state.get('live_roi_error'):
         st.error(st.session_state['live_roi_error'])
     result=st.session_state.get('live_roi_result')
