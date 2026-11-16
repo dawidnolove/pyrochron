@@ -10,7 +10,6 @@ venv/
 
 # Local editor and temporary workspace files
 .work/
-.manus/
 .DS_Store
 Thumbs.db
 
